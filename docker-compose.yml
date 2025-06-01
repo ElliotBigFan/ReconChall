@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  web:
+    build: .
+    ports:
+      - "4040:80"
+    depends_on:
+      - db
+    environment:
+      - MYSQL_HOST=db
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=root
+      - MYSQL_DATABASE=ctf_db
+
+  db:
+    image: mysql:5.7
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=ctf_db
+    volumes:
+      - ./config/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - mysql_data:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - "4041:80"
+    environment:
+      - PMA_HOST=db
+      - PMA_USER=root
+      - PMA_PASSWORD=root
+      - MYSQL_ROOT_PASSWORD=root
+    depends_on:
+      - db
+
+volumes:
+  mysql_data:

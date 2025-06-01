@@ -15,7 +15,7 @@ COPY src/ /var/www/html/
 COPY images/ /var/www/html/images/
 
 # Create flag file
-RUN echo "CTF{Command_Injection_Is_Dangerous}" > /flag.txt
+RUN echo "CTF{Secret_Flag_On_Server}" > /flag.txt
 
 # Set permissions
 RUN chown -R www-data:www-data /var/www/html/

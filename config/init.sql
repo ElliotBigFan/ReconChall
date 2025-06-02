@@ -20,7 +20,7 @@ INSERT INTO users (username, password, is_admin) VALUES
 
 -- Insert vulnerable user
 INSERT INTO users (username, password, is_admin) VALUES 
-('elliot', '0d0n70id', FALSE);
+('elliot', 'password', FALSE);
 
 -- Insert flags
 INSERT INTO flags (flag_name, flag_value) VALUES 
